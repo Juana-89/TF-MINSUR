@@ -5,23 +5,25 @@ import { BiUserCircle } from 'react-icons/bi';
 import { MdLockOutline } from 'react-icons/md';
 import Logo from '../../assets/Logo_Minsur.png';
 import { useAuth } from '../../context/authContext';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
+import { loginMicrosoft } from '../../services/auth';
+import  Popup  from '../popups/Popup';
 
+// corrigiendo
 const Login = () => {
 	const navigate = useNavigate();
-	const [email, setEmail] = useState();
-	const [password, setPassword] = useState();
-	const [error, setError] = useState();
-
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+	const [error, setError] = useState(null);
 	const { signIn } = useAuth();
-	const onSubmit = async e => {
-		e.preventDefault();
 
+	const onSubmit = async (e) => {
+		e.preventDefault();
 		try {
 			await signIn(email, password);
 			navigate('/');
-			console.log('inicio de sesión exitoso');
 		} catch (error) {
-			console.log(error.code, error.message);
 			switch (error.code) {
 				case '':
 					setError('Campos vacíos.Ingrese correo y contraseña');
@@ -44,47 +46,75 @@ const Login = () => {
 		}
 	};
 
-	const [popupActive, setPopupActive] = useState(false);
+	// const [popupActive, setPopupActive] = useState(false);
 
-	const handleClose = () => {
-		setPopupActive(false);
-	};
+	// const handleClose = () => {
+	// 	setPopupActive(false);
+	// };
 
 	return (
 		<section>
-			<form onSubmit={onSubmit}>
+			<div className={style.logoContainer}>
 				<img className={style.logo} src={Logo} alt='Logo' />
-				<h1>Ingresar</h1>
-				<BiUserCircle />
-				<input
-					type='email'
-					placeholder='Ingresa tu correo electrónico'
+			</div>
+			<form onSubmit={onSubmit}>
+				{/* <h1>Ingresar</h1> */}
+				<TextField  
 					onChange={e => {
 						setEmail(e.target.value);
 					}}
+					id='outlined-start-adornment'
+					label='Correo electrónico'
+					variant='outlined'
+					type='email'
+					placeholder='Ingresa tu correo electrónico'
+					sx={{ m: 1, width: '30ch' }}
+					InputProps={{
+						startAdornment: (
+							<InputAdornment position='start'>
+								<BiUserCircle />
+							</InputAdornment>
+						),
+					}}
 				/>
-				<MdLockOutline />
-				<input
+				<TextField
+					id='outlined-password-input'
+					label='Contraseña'
 					type='password'
 					placeholder='Ingresa tu contraseña'
+					sx={{ m: 1, width: '30ch' }}
+					InputProps={{
+						startAdornment: (
+							<InputAdornment position='start'>
+								<MdLockOutline />
+							</InputAdornment>
+						),
+					}}
 					onChange={e => {
 						setPassword(e.target.value);
 					}}
 				/>
-
-				<Link to='#'>¿Olvidaste tu contraseña?</Link>
-				<button type='submit'>Ingresar</button>
+				<Link className={style.link} to='#'>
+					¿Olvidaste tu contraseña?
+				</Link>
+				<button type='submit' className={style.submitBtn} onClick={onSubmit}>
+					Ingresar
+				</button>
+				<button type='submit' className={style.submitBtn1} onClick={loginMicrosoft}>
+					<img src={require('../../assets/Icono-microsoft.png')} className={style.imgIco}/>
+					<div className={style.divTxt}> Ingresar con Microsoft</div>
+				</button>
 			</form>
-
-			<div id={style.container}>
+			{/* <div id={style.container}>
 				<div id={style.modal}>
 					<h2>Aviso</h2>
-					<p>{error}</p>
-					<button onClick={handleClose}>Aceptar</button>
+					<p> El usuario y/o contraseña no son correctos, vovler a intentar.</p>
+					<button>Aceptar</button>
 				</div>
-			</div>
+			</div> */}
+			<p>{error}</p>
+			{error && <Popup>{error}</Popup>}
 		</section>
 	);
 };
-
 export default Login;

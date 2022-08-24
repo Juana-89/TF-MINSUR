@@ -1,0 +1,11 @@
+Button{
+    background-Color: '#003DA5';
+  border-Color: 'none';
+  width: '229px';
+  height: '54px';
+  border-Radius:'30px';
+  font-Weight: 'bold';
+  color: '#ffffff';
+  text-Transform: 'none';
+  font-Size: '18px'
+}
