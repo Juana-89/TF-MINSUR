@@ -12,7 +12,7 @@ const HomeBtn = props => {
 		<Stack sx={{ justifyContent: 'center', alignItems: 'center' }}>
 			<Button
 				onClick={props.navigateHandler}
-				style={{ textTransform: 'none' }}
+				style={{ textTransform: 'none', maxWidth: '250px' }}
 				variant='contained'
 				sx={{
 					backgroundColor: '#41B6E6',
@@ -39,37 +39,37 @@ const HomeBtns = props => {
 				marginTop: '8px',
 			}}
 		>
-		<div className={styles.divButtons}>
-		<div className={styles.button}>
-			<button
-				onClick={props.navigateHandlerTimecoupon}
-				className={`${styles.BenefitBtns} ${styles.btnColor}`}
-			>
-				<Stack sx={{ justifyContent: 'center', alignItems: 'center' }}>
-					<CardMedia
-						component='img'
-						image={btnImg}
-						sx={{ width: '45px', height: '45px', marginBottom: '9px' }}
-					/>
-					<p>Solicita aquí tu cupón de medio día libre</p>
-				</Stack>
-			</button>
-			</div>
-			<div className={styles.button}>
-			<button
-				onClick={props.navigateHandlerBirthday}
-				className={`${styles.BenefitBtns} ${styles.btnColor2}`}
-			>
-				<Stack sx={{ justifyContent: 'center', alignItems: 'center' }}>
-					<CardMedia
-						component='img'
-						image={btnImg2}
-						sx={{ width: '45px', height: '45px', marginBottom: '9px' }}
-					/>
-					<p>Solicita aquí tu cupón de día libre por cumpleaños</p>
-				</Stack>
-			</button>
-			</div>
+			<div className={styles.divButtons}>
+				<div className={styles.button}>
+					<button
+						onClick={props.navigateHandlerTimecoupon}
+						className={`${styles.BenefitBtns} ${styles.btnColor}`}
+					>
+						<Stack sx={{ justifyContent: 'center', alignItems: 'center' }}>
+							<CardMedia
+								component='img'
+								image={btnImg}
+								sx={{ width: '45px', height: '45px', marginBottom: '9px' }}
+							/>
+							<p>Solicita aquí tu cupón de medio día libre</p>
+						</Stack>
+					</button>
+				</div>
+				<div className={styles.button}>
+					<button
+						onClick={props.navigateHandlerBirthday}
+						className={`${styles.BenefitBtns} ${styles.btnColor2}`}
+					>
+						<Stack sx={{ justifyContent: 'center', alignItems: 'center' }}>
+							<CardMedia
+								component='img'
+								image={btnImg2}
+								sx={{ width: '45px', height: '45px', marginBottom: '9px' }}
+							/>
+							<p>Solicita aquí tu cupón de día libre por cumpleaños</p>
+						</Stack>
+					</button>
+				</div>
 			</div>
 		</Stack>
 	);

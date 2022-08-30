@@ -38,8 +38,8 @@ export function BenefitsProvider({ children }) {
 					programs.push({ ...doc.data(), id: doc.id });
 				});
 				setProgramsData(programs);
-				console.log(benefits);
-				console.log(programs);
+				// console.log(benefits);
+				// console.log(programs);
 			} catch (error) {
 				console.log(error);
 			}
