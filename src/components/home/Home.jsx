@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from './Home.module.css';
 import { Stack } from '@mui/material';
-import Nav from '../nav/Nav';
 import { SimpleAccordion } from '../accordion/accordion';
 import Greetings from '../greetings/greetings';
 import { useNavigate } from 'react-router-dom';
 
 import { useBenefits } from '../../context/benefitContext';
+import Navbar from '../nav/nav2';
 
 const Home = () => {
 	// obteniendo data de beneficios y projectos
@@ -37,7 +37,7 @@ const Home = () => {
 	return (
 		<div className={styles.container}>
 			<Stack>
-				<Nav></Nav>
+				<Navbar></Navbar>
 			</Stack>
 
 			<Greetings></Greetings>
@@ -47,6 +47,8 @@ const Home = () => {
 					background: '#FFFFFF',
 					borderRadius: '20px 20px 0 0',
 					paddingBottom: '15px',
+					minHeight: '75vh',
+					paddingTop: '8px',
 				}}
 			>
 				<Stack
@@ -104,7 +106,7 @@ const Home = () => {
 							<SimpleAccordion
 								navigateHandlerTimecoupon={() => navigateHandler('/home')}
 								navigateHandlerBirthday={() => navigateHandler('/home')}
-								actionBtns={true}
+								actionBtnsBeca={true}
 								src={educationPrograms[0].icon}
 								title='Educación'
 								description={educationPrograms[0].DescPrograma}

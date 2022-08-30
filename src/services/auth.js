@@ -25,5 +25,4 @@ export const loginMicrosoft = (e) => {
 			console.log(error.stack);
 			console.loge(error.message);
 		});
-
 };

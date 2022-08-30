@@ -1,26 +1,41 @@
 .container {
 	background-color: #003da5;
+	gap: 5px;
 }
 .greetings {
 	color: #ffffff;
 	font-size: 25px;
 }
 .tittle {
-	font-size: 16px;
+	font-size: 18px;
 	font-weight: bold;
 	color: #c4d600;
 	justify-content: center;
 	align-self: center;
+	margin: 5%;
 }
 .subtittle {
 	font-size: 16px;
 	font-weight: bold;
 	color: #003da5;
-	margin-left: 15px;
+	margin: 10px 0 0 15px;
+}
+
+.turnContainer {
+	margin: 5px 0 0 5px;
+	gap: 10%;
+}
+.accordion {
+	margin-top: 5%;
+}
+.motive {
+	font-size: 16px;
+	font-weight: bold;
+	color: #003da5;
 }
 
 .submitBtn {
-	margin-top: 5px;
+	margin-top: 7px;
 	background-color: #c4d600;
 	font-size: 16px;
 	font-weight: bold;
@@ -30,12 +45,6 @@
 	border-radius: 25px;
 	border: none;
 	margin-bottom: 10%;
-}
-
-.motive {
-	font-size: 16px;
-	font-weight: bold;
-	color: #003da5;
 }
 
 @media (min-width: 600px) {

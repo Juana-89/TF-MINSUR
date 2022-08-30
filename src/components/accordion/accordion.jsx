@@ -6,7 +6,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { CardMedia } from '@mui/material';
-import { HomeBtn, HomeBtns } from '../home/homeBtn/homeBtns';
+import { HomeBtn, HomeBtns, HomeBtnsBeca } from '../home/homeBtn/homeBtns';
 
 export function SimpleAccordion({
 	src,
@@ -14,6 +14,7 @@ export function SimpleAccordion({
 	description,
 	actionBtn,
 	actionBtns,
+	actionBtnsBeca,
 	navigateHandler,
 	navigateHandlerTimecoupon,
 	navigateHandlerBirthday,
@@ -54,6 +55,12 @@ export function SimpleAccordion({
 						navigateHandlerTimecoupon={navigateHandlerTimecoupon}
 						navigateHandlerBirthday={navigateHandlerBirthday}
 					></HomeBtns>
+				)}
+				{actionBtnsBeca && (
+					<HomeBtnsBeca
+						navigateHandlerTimecoupon={navigateHandlerTimecoupon}
+						navigateHandlerBirthday={navigateHandlerBirthday}
+					></HomeBtnsBeca>
 				)}
 			</AccordionDetails>
 		</Accordion>

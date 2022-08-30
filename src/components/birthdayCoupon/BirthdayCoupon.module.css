@@ -6,17 +6,18 @@
 	font-size: 25px;
 }
 .tittle {
-	font-size: 16px;
+	font-size: 18px;
 	font-weight: bold;
 	color: #9063cd;
 	justify-content: center;
 	align-self: center;
+	margin: 5%;
 }
 .subtittle {
 	font-size: 16px;
 	font-weight: bold;
 	color: #003da5;
-	margin-left: 15px;
+	margin: 10px 0 0 15px;
 }
 
 .submitBtn {

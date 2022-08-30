@@ -3,6 +3,8 @@ import { CardMedia, Stack } from '@mui/material';
 import Button from '@mui/material/Button';
 import btnImg from '../iconsHome/btn1.png';
 import btnImg2 from '../iconsHome/btn2.png';
+import iconPr from '../iconsHome/iconPr.png';
+import iconPr2 from '../iconsHome/iconPr2.png';
 import styles from '../Home.module.css';
 
 const HomeBtn = props => {
@@ -32,6 +34,52 @@ const HomeBtns = props => {
 		<Stack
 			direction='row'
 			sx={{
+				justifyContent: 'space-around',
+				alignItems: 'right',
+				marginTop: '8px',
+			}}
+		>
+		<div className={styles.divButtons}>
+		<div className={styles.button}>
+			<button
+				onClick={props.navigateHandlerTimecoupon}
+				className={`${styles.BenefitBtns} ${styles.btnColor}`}
+			>
+				<Stack sx={{ justifyContent: 'center', alignItems: 'center' }}>
+					<CardMedia
+						component='img'
+						image={btnImg}
+						sx={{ width: '45px', height: '45px', marginBottom: '9px' }}
+					/>
+					<p>Solicita aquí tu cupón de medio día libre</p>
+				</Stack>
+			</button>
+			</div>
+			<div className={styles.button}>
+			<button
+				onClick={props.navigateHandlerBirthday}
+				className={`${styles.BenefitBtns} ${styles.btnColor2}`}
+			>
+				<Stack sx={{ justifyContent: 'center', alignItems: 'center' }}>
+					<CardMedia
+						component='img'
+						image={btnImg2}
+						sx={{ width: '45px', height: '45px', marginBottom: '9px' }}
+					/>
+					<p>Solicita aquí tu cupón de día libre por cumpleaños</p>
+				</Stack>
+			</button>
+			</div>
+			</div>
+		</Stack>
+	);
+};
+
+const HomeBtnsBeca = props => {
+	return (
+		<Stack
+			direction='row'
+			sx={{
 				justifyContent: 'space-between',
 				alignItems: 'center',
 				marginTop: '8px',
@@ -44,10 +92,10 @@ const HomeBtns = props => {
 				<Stack sx={{ justifyContent: 'center', alignItems: 'center' }}>
 					<CardMedia
 						component='img'
-						image={btnImg}
-						sx={{ width: '30px', height: '30px' }}
+						image={iconPr}
+						sx={{ width: '55px', height: '55px', marginBottom: '9px' }}
 					/>
-					<p>Solicita aquí tu cupón de medio día libre</p>
+					<p>Educación Básica</p>
 				</Stack>
 			</button>
 			<button
@@ -57,14 +105,14 @@ const HomeBtns = props => {
 				<Stack sx={{ justifyContent: 'center', alignItems: 'center' }}>
 					<CardMedia
 						component='img'
-						image={btnImg2}
-						sx={{ width: '30px', height: '30px' }}
+						image={iconPr2}
+						sx={{ width: '55px', height: '55px', marginBottom: '9px' }}
 					/>
-					<p>Solicita aquí tu cupón de día libre por cumpleaños</p>
+					<p>Mi beca</p>
 				</Stack>
 			</button>
 		</Stack>
 	);
 };
 
-export { HomeBtn, HomeBtns };
+export { HomeBtn, HomeBtns, HomeBtnsBeca };

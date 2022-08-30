@@ -3,7 +3,7 @@ import styles from './TimeCoupon.module.css';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import Nav from '../nav/Nav';
+import Navbar from '../nav/nav2';
 import Select from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import isWeekend from 'date-fns/isWeekend';
@@ -20,28 +20,46 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
+import Popup from '../../components/popups/Popup';
+import { SendEmail } from '../../services/sendgrid';
 
 const TimeCoupon = () => {
 	const [value, setValue] = React.useState(null);
 	const [turn, setTurn] = React.useState('');
+	const [textReq, setTextReq] = React.useState('');
+	const [showModal, setShowModal] = React.useState(false);
 
+	const handleMessageChange = event => {
+		setTextReq(event.target.value);
+		console.log(event.target.value);
+	};
 	const handleChange = event => {
 		setTurn(event.target.value);
 	};
 
-	const submitForm = e => {
+	const submitForm = async e => {
 		e.preventDefault();
-		console.log(e);
-		console.log(value);
-		console.log(turn);
 
-		console.log('hiciste click');
+		// sendgrid body email
+
+		const msg = {
+			to: 'nay.trevejo@gmail.com',
+			from: 'fparodig@gmail.com', // Use the email address or domain you verified above
+			subject: 'Solicitando permiso de medio día',
+			text: `Hola! Estoy solicitando permiso para ${value} en el turno ${turn}. Muchas gracias.`,
+			html: `Hola! Estoy solicitando permiso para ${value} 
+			en el turno ${turn}. Muchas gracias.
+			Motivo: ${textReq}`,
+		};
+		await SendEmail(msg);
+
+		setShowModal(!showModal);
 	};
 
 	return (
 		<div className={styles.container}>
 			<Stack>
-				<Nav></Nav>
+				<Navbar></Navbar>
 			</Stack>
 			<Stack>
 				<Greetings />
@@ -56,7 +74,6 @@ const TimeCoupon = () => {
 
 						<form onSubmit={submitForm}>
 							<div className={styles.internalContainers}>
-								<InputLabel id='dateLabel'>Elige Fecha</InputLabel>
 								<LocalizationProvider dateAdapter={AdapterDateFns} locale={es}>
 									<StaticDatePicker
 										displayStaticWrapperAs='desktop'
@@ -74,7 +91,7 @@ const TimeCoupon = () => {
 									<InputLabel>Turno</InputLabel>
 									<Select
 										sx={{
-											width: '300px',
+											width: '350px',
 											color: '#003da5',
 											fontWeight: 'bold',
 										}}
@@ -88,7 +105,7 @@ const TimeCoupon = () => {
 												color: '#003da5',
 												fontWeight: 'bold',
 											}}
-											value={1}
+											value={'Turno: 9:00 am - 1:00 pm'}
 										>
 											Turno: 9:00 am - 1:00 pm
 										</MenuItem>
@@ -97,13 +114,13 @@ const TimeCoupon = () => {
 												color: '#003da5',
 												fontWeight: 'bold',
 											}}
-											value={2}
+											value={'Turno: 2:00 pm - 6:00 pm'}
 										>
 											Turno: 2:00 pm - 6:00 pm
 										</MenuItem>
 									</Select>
 
-									<div>
+									<div className={styles.accordion}>
 										<Accordion>
 											<AccordionSummary
 												expandIcon={<ExpandMoreIcon />}
@@ -116,6 +133,10 @@ const TimeCoupon = () => {
 											</AccordionSummary>
 											<AccordionDetails>
 												<TextareaAutosize
+													id='textReq'
+													name='textReq'
+													value={textReq}
+													onChange={handleMessageChange}
 													aria-label='minimum height'
 													minRows={3}
 													placeholder='Explica tu motivo'
@@ -130,6 +151,11 @@ const TimeCoupon = () => {
 								{' '}
 								Enviar solicitud{' '}
 							</button>
+							{showModal && (
+								<Popup>
+									{'¡Tu solicitud fue enviada con éxito al jefe de tu área!'}{' '}
+								</Popup>
+							)}
 						</form>
 					</Box>
 				</Stack>

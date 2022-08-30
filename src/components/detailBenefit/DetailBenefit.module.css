@@ -1,23 +1,12 @@
-.container{
-    display: flex;
-    align-items: stretch;
-    flex-direction: column;
-}  
-.divcontainerheader{
-    display: flex;
-    justify-content: flex-end;
+.container {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	justify-content: space-evenly;
 }
-.divheader{
-    background-color: #41B6E6;
-    color: #FFFFFF;
-    font-weight: bold;
-    border-radius: 0 0 0 10px;
-    width: 180px;
-    height: 40px;
-    text-align: center;
-    padding: 10px;
-    display: flex;
-    justify-content: flex-end;
+.divHeader {
+	display: flex;
+	justify-content: flex-end;
 }
 .backHeader {
 	background: #41b6e6;
@@ -26,42 +15,56 @@
 	color: #ffffff;
 	font-size: 0.8em;
 }
-.title{
-    color:#003DA5;
-    margin: 15px;
+
+.title {
+	color: #003da5;
 }
-.title2,
-.descripList{
-    margin: 15px;
+
+.divImage {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	padding: 24px;
 }
-.divImage{
-    margin: 20px;
-    text-align: center;
+.divImage img {
+	width: 70px;
 }
-.containerTitle{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.subtitle {
+	display: flex;
+	padding: 0 20px 0 18px;
+	justify-content: space-between;
 }
-.description{
-    color: #4F758B;
-    margin: 15px;
+.description {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 20px;
+	text-align: justify;
+	margin-top: 11px;
+	color: #4f758b;
+	font-weight: 500;
 }
-.divHeart{
-    display: flex;
-    justify-content: flex-end;
+.checksTitle {
+	display: flex;
+	align-items: center;
+	padding: 0 20px;
+	margin-top: 11px;
 }
-.btnApply{
-    background-color: #41B6E6;
-    border: none;
-    width: 229px;
-	height: 54px;
-	border-radius: 30px;
-    color: #FFFFFF;
-    font-weight: bold;
-    margin: 10px;
-    margin-left: 50%;
-    transform: translateX(-50%);
+.checks {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin-left: 20px;
+	padding: 0 20px;
+	margin-top: 11px;
+	color: #4f758b;
+	font-weight: 500;
+}
+.btnDiv {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	padding: 20px;
 }
 
 @media (min-width: 1024px) {

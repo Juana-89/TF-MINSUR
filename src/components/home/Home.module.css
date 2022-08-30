@@ -1,6 +1,7 @@
 .container {
 	background-color: #003da5;
 	min-height: 100vh;
+	width: 100%;
 }
 .greetings {
 	color: #ffffff;
@@ -40,4 +41,22 @@
 }
 .btnColor2:hover {
 	background-color: #7952af;
+}
+.divButtons {
+	display: flex;
+}
+@media (min-width: 400px) {
+	.divButtons {
+		display: flex;
+	}
+	.button {
+		display: flex;
+		justify-content: space-between;
+		margin: 10px 10px 20px 20px;
+	}
+}
+@media (max-width: 399px) {
+	.button {
+		margin: 10px;
+	}
 }

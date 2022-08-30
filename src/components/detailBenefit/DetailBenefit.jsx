@@ -1,27 +1,46 @@
 import React, { useState } from 'react';
 import styles from './DetailBenefit.module.css';
-import icon from '../../components/home/iconsHome/icon1.png';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { Stack } from '@mui/material';
 import Button from '@mui/material/Button';
-
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
+import { setDataInFirestore } from '../../services/logout';
+import { useAuth } from '../../context/authContext';
+
+// import MaterialUIPickers from './dateInput';
 
 const DetailBenefit = props => {
+	const { userData } = useAuth();
 	const [popupActive, setPopupActive] = useState(false);
-
+	const [form, setForm] = useState({
+		...userData,
+	});
 	const handleClose = () => {
 		setPopupActive(false);
-		//   setForm({
-		// 	title: "",
-		// 	desc: "",
-		// 	tasks: [],
-		//   });
+		setForm({
+			...userData,
+		});
+	};
+
+	const handleChange = e => {
+		setForm({
+			...form,
+			[e.target.name]: e.target.value,
+		});
+	};
+
+	const handleSubmitNewNote = e => {
+		e.preventDefault();
+		setDataInFirestore(form);
+		setForm({
+			...userData,
+		});
+		setPopupActive(false);
 	};
 
 	return (
@@ -92,29 +111,38 @@ const DetailBenefit = props => {
 			>
 				<DialogTitle>Formulario de solicitud</DialogTitle>
 				<DialogContent>
-					<form>
+					<form onSubmit={handleSubmitNewNote}>
 						<Box mb={2}>
 							<TextField
+								onChange={handleChange}
+								name='nombre'
+								value={userData.nombre}
 								fullWidth
 								id='outlined-basic'
-								label='datos'
+								label='Nombre'
 								variant='outlined'
 							/>
 						</Box>
 						<Box mb={2}>
 							<TextField
+								onChange={handleChange}
+								name='unidad'
 								fullWidth
 								id='outlined-basic'
-								label='datos'
+								label='Unidad'
 								variant='outlined'
+								value={userData.unidad}
 							/>
 						</Box>
 						<Box mb={2}>
 							<TextField
+								onChange={handleChange}
+								name='fecha'
 								fullWidth
 								id='outlined-basic'
-								label='datos'
+								label='Fecha'
 								variant='outlined'
+								value={userData.fecha}
 							/>
 						</Box>
 						<DialogActions>

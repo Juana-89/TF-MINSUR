@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './BirthdayCoupon.module.css';
-import Nav from '../nav/Nav';
+import Navbar from '../nav/nav2';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
@@ -11,18 +11,35 @@ import { es } from 'date-fns/locale';
 import isWeekend from 'date-fns/isWeekend';
 import TextField from '@mui/material/TextField';
 import Greetings from '../greetings/greetings';
+import Popup from '../../components/popups/Popup';
+import { SendEmail } from '../../services/sendgrid';
 
 const BirthdayCoupon = () => {
 	const [value, setValue] = React.useState(new Date());
-	const submitFormBirthday = e => {
+	const [showModal, setShowModal] = React.useState(false);
+
+	const submitFormBirthday = async e => {
 		e.preventDefault();
-		console.log(value);
+
+		// email body
+		const msg = {
+			to: 'nay.trevejo@gmail.com',
+			from: 'fparodig@gmail.com', // Use the email address or domain you verified above
+			subject: 'Solicitando permiso de Cumpleaños',
+			text: `Hola! Estoy solicitando permiso para el día ${value} por motivo de mi cumpleaños. Muchas gracias.`,
+			html: `Hola! Estoy solicitando permiso para el día ${value} por motivo de mi cumpleaños. Muchas gracias.`,
+		};
+
+		await SendEmail(msg);
+
+		setShowModal(!showModal);
 	};
+
 	return (
 		<>
 			<div className={styles.container}>
 				<Stack>
-					<Nav></Nav>
+					<Navbar></Navbar>
 				</Stack>
 				<Stack>
 					<Greetings />
@@ -51,6 +68,11 @@ const BirthdayCoupon = () => {
 								{' '}
 								Enviar solicitud{' '}
 							</button>
+							{showModal && (
+								<Popup>
+									{'¡Tu solicitud fue enviada con éxito al jefe de tu área!'}{' '}
+								</Popup>
+							)}
 						</form>
 					</Box>
 				</Stack>
